@@ -3,6 +3,8 @@
 import argparse
 import asyncio
 import logging
+import os
+import sys
 from typing import Literal
 
 from azure.monitor.opentelemetry.exporter import (
@@ -27,6 +29,10 @@ from opentelemetry.sdk.trace.export import BatchSpanProcessor, ConsoleSpanExport
 from opentelemetry.semconv.resource import ResourceAttributes
 from opentelemetry.trace import set_tracer_provider
 from opentelemetry.trace.span import format_trace_id
+
+# Adding upper folders to the path
+base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../"))
+sys.path.insert(0, base_path)
 
 from samples.demos.telemetry.scenarios import run_ai_service, run_auto_function_invocation, run_kernel_function
 from samples.demos.telemetry.telemetry_sample_settings import TelemetrySampleSettings
